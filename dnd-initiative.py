@@ -30,19 +30,23 @@ def read_input():
 
         tokens = line.split()
 
-        if not 2 <= len(tokens) <= 3:
-            print_error("Invalid number of values")
+        if len(tokens) < 2:
+            print_error("Too few values")
             continue
 
-        name = tokens[0]
+        is_player = tokens[-1] == "p"
+
+        # Drop the is_player token, so the initiative is the last element.
+        if is_player:
+            tokens = tokens[:-1]
 
         try:
-            initiative = int(tokens[1])
+            initiative = int(tokens[-1])
         except ValueError:
             print_error("Initiative is not a valid integer")
             continue
 
-        is_player = tokens[2] == 'p' if len(tokens) > 2 else False
+        name = " ".join(tokens[:-1])
 
         characters.append(Character(initiative, name, is_player))
 
