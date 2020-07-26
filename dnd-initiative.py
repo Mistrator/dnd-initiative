@@ -20,6 +20,8 @@ def print_error(msg):
 
 
 def read_input():
+    UNDO = "r"
+
     characters = []
 
     while True:
@@ -27,6 +29,14 @@ def read_input():
 
         if not line:
             break
+
+        if line == UNDO:
+            if not characters:
+                print_error("Nothing to remove")
+            else:
+                print("Removed character \"{}\"".format(characters[-1].name))
+                del characters[-1]
+            continue
 
         tokens = line.split()
 
@@ -38,7 +48,7 @@ def read_input():
 
         # Drop the is_player token, so the initiative is the last element.
         if is_player:
-            tokens = tokens[:-1]
+            del tokens[-1]
 
         try:
             initiative = int(tokens[-1])

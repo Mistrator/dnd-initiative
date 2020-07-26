@@ -11,6 +11,8 @@ Character syntax: `<character name> <initiative> [p]`, where
 * `p`: the character is a player character, and thus it should go before NPC:s with
 an equal initiative in the battle order
 
+Inputting a single `r` removes the previously added character.
+
 ## Example
 
 ### Input
